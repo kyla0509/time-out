@@ -9,27 +9,52 @@ from plyer import notification
 
 class TimeOut:
     def __init__(self):
-        config = configparser.ConfigParser()
-        config.read('timer.ini')
-        iconLocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        self.config = configparser.ConfigParser()
+        self.config.read('timer.ini')
+        self.iconLocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-        self.tOut = config.getint('settings', 'messageTime')
-        self.sleeptime = config.getint('settings', 'sleepTime')
-        self.language = config.get('settings', 'language')
-        self.runtime = config.getint('settings', 'repeat')
-        self.iconPath = os.path.realpath(os.path.join(iconLocation, 'clock.ico'))
+        self.tOut = self.config.getint('settings', 'messageTime')
+        self.sleeptime = self.config.getint('settings', 'sleepTime')
+        self.language = self.config.get('settings', 'language')
+        self.runtime = self.config.getint('settings', 'repeat')
+        self.iconPath = os.path.realpath(os.path.join(self.iconLocation, 'clock.ico'))
 
     def run(self):
         i = 0
         while i < self.runtime:
+            alert = setMessage(self, i)
+            msgTitle = setTitle(self.language)
             notification.notify(
-                title = "ALERT!!!",
-                message = "Take a break! It has been an hour!",
+                title = msgTitle,
+                message = alert,
                 app_icon = self.iconPath,
                 timeout = self.tOut
             )
             i += 1
             time.sleep(self.sleeptime)
+
+def setTitle(lang):
+    if lang == "pirate":
+        return "Ahoy!"
+    elif lang == "owo":
+        return "OwO"
+    else:
+        return "Hey!"
+
+def setMessage(self, i):
+        line = i % self.runtime
+        if self.language == "pirate":
+            langFile = open('pirateTalk')
+            message = langFile.readlines()
+            return message[line]
+        elif self.language == "owo":
+            langFile = open('owoTalk')
+            message = langFile.readlines()
+            return message[line]
+        else:
+            langFile = open('meanTalk')
+            message = langFile.readlines()
+            return message[line]
 
 if __name__ == "__main__":
     timeout = TimeOut()
