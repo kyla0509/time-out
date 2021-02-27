@@ -1,6 +1,7 @@
 # import modules
 import time
-import tkinter
+import tkinter as tk
+import plyer
 from plyer import notification
 
 class TimeOut:
