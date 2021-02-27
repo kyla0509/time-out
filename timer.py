@@ -13,15 +13,18 @@ class TimeOut:
     def setLanguage(self, language):
         self.language = language
 
-    def running(self, runtime, tOut, sleeptime):
+    def run(self):
         i = 0
-        while i < runtime:
+        while i < self.runtime:
             notification.notify(
                 title = "ALERT!!!",
                 message = "Take a break! It has been an hour!",
-                timeout = 
+                timeout = self.tOut
             )
-            time.sleep(3600)
+            i += 1
+            time.sleep(self.sleeptime)
 
 if __name__ == "__main__":
     timeout = TimeOut(5)
+
+    timeout.run()
