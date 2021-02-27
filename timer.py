@@ -9,15 +9,12 @@ from plyer import notification
 class TimeOut:
     def __init__(self):
         config = configparser.ConfigParser()
-        config.read('test.ini')
+        config.read('timer.ini')
 
-        self.tOut = config.get()z
-        self.sleeptime = 8
-        self.language = "mean"
-        self.runtime = runtime
-
-    def setLanguage(self, language):
-        self.language = language
+        self.tOut = config.getint('settings', 'messageTime')
+        self.sleeptime = config.getint('settings', 'sleepTime')
+        self.language = config.get('settings', 'language')
+        self.runtime = config.getint('settings', 'repeat')
 
     def run(self):
         i = 0
@@ -31,6 +28,6 @@ class TimeOut:
             time.sleep(self.sleeptime)
 
 if __name__ == "__main__":
-    timeout = TimeOut(5)
+    timeout = TimeOut()
 
     timeout.run()
