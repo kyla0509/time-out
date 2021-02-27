@@ -38,6 +38,8 @@ def setTitle(lang):
         return "Ahoy!"
     elif lang == "owo":
         return "OwO"
+    elif lang =="normal":
+        return "Sounds good!"
     else:
         return "Hey!"
 
@@ -51,6 +53,10 @@ def setMessage(self, i):
             langFile = open('owoTalk')
             message = langFile.readlines()
             return message[line]
+        elif self.language == "normal":
+            langFile = open('normalTalk')
+            message = langFile.readlines()
+            return message[line]    
         else:
             langFile = open('meanTalk')
             message = langFile.readlines()
