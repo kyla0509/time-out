@@ -35,13 +35,13 @@ class TimeOut:
 
 def setTitle(lang):
     if lang == "pirate":
-        return "Ahoy!"
+        return "ahoy matey,"
     elif lang == "owo":
         return "OwO"
     elif lang =="normal":
-        return "Sounds good!"
+        return "hello friend,"
     else:
-        return "Hey!"
+        return "SUP NERD,"
 
 def setMessage(self, i):
         line = i % self.runtime
