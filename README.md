@@ -1,6 +1,7 @@
 # Time Out!
+![angryclock](https://i.imgur.com/6hg6KxL.png)
 
-A reminder application 
+A reminder application
 
 ## Installation
 
