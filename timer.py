@@ -1,12 +1,17 @@
 # import modules
 import time
 import tkinter as tk
+from tkinter import scrolledtext, ttk
+import configparser
 import plyer
 from plyer import notification
 
 class TimeOut:
-    def __init__(self, runtime):
-        self.tOut = 10
+    def __init__(self):
+        config = configparser.ConfigParser()
+        config.read('test.ini')
+
+        self.tOut = config.get()z
         self.sleeptime = 8
         self.language = "mean"
         self.runtime = runtime
