@@ -1,4 +1,5 @@
 # import modules
+import os
 import time
 import tkinter as tk
 from tkinter import scrolledtext, ttk
@@ -10,11 +11,13 @@ class TimeOut:
     def __init__(self):
         config = configparser.ConfigParser()
         config.read('timer.ini')
+        iconLocation = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
         self.tOut = config.getint('settings', 'messageTime')
         self.sleeptime = config.getint('settings', 'sleepTime')
         self.language = config.get('settings', 'language')
         self.runtime = config.getint('settings', 'repeat')
+        self.iconPath = os.path.realpath(os.path.join(iconLocation, 'clock.ico'))
 
     def run(self):
         i = 0
@@ -22,6 +25,7 @@ class TimeOut:
             notification.notify(
                 title = "ALERT!!!",
                 message = "Take a break! It has been an hour!",
+                app_icon = self.iconPath,
                 timeout = self.tOut
             )
             i += 1
