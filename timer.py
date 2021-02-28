@@ -7,6 +7,12 @@ import configparser
 import plyer
 from plyer import notification
 
+import sys
+import re
+sys.path.append(os.path.realpath('.'))
+from pprint import pprint
+import inquirer
+
 class TimeOut:
     def __init__(self):
         self.config = configparser.ConfigParser()
@@ -20,7 +26,18 @@ class TimeOut:
         self.iconPath = os.path.realpath(os.path.join(self.iconLocation, 'clock.ico'))
 
     def run(self):
+        # pick language first, then run
+        questions = [
+            inquirer.List('lang',
+                        message="What type of alarm do you want?",
+                        choices=['normal', 'angry', 'owo', 'pirate'],
+                    ),
+            ]
+
+        self.language = inquirer.prompt(questions)
+
         i = 0
+        # actually start running runs
         while i < self.runtime:
             alert = setMessage(self, i)
             msgTitle = setTitle(self.language)
