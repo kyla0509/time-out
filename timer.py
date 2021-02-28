@@ -43,8 +43,10 @@ def setTitle(lang):
         return "hello friend,"
     elif lang =="eldritch":
         return "greetings dreamer,"
+    elif lang == "shakespeare":
+        return "how now fool?"
     elif lang =="cipher":
-        return "decode this for a surprise,"    
+        return "decode this for a surprise,"
     else:
         return "SUP NERD,"
 
@@ -69,7 +71,11 @@ def setMessage(self, i):
         elif self.language == "encrypted":
             langFile = open(os.path.join(os.path.dirname(__file__), 'encryptTalk'))
             message = langFile.readlines()
-            return message[line]    
+            return message[line]
+        elif self.language == "shakespeare":
+            langFile = open(os.path.join(os.path.dirname(__file__), 'shakespeareTalk'))
+            message = langFile.readlines()
+            return message[line]
         else:
             langFile = open(os.path.join(os.path.dirname(__file__), 'angryTalk'))
             message = langFile.readlines()
