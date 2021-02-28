@@ -15,6 +15,6 @@ wip
 wip
 
 ## Contributing
-wip
+Nola Watson & Kyla Ramos for HackTCNJ 2021
 
 ## License
