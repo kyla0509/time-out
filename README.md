@@ -13,9 +13,9 @@ Time Out is a reminder application that allows you to choose a time to work and 
 To install (put instructions here)
 
 ## What was it built with?
-Python (using Plyer for Desktop notifs!)
-Entertaining messages (from our brains)
-An angry clock icon (designed by Kyla)
+- Python (using Plyer for Desktop notifs!)
+- Entertaining messages (from our brains)
+- An angry clock icon (designed by Kyla)
 
 ## Contributing
 Created by Nola Watson & Kyla Ramos for HackTCNJ 2021 :)
