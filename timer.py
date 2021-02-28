@@ -6,12 +6,7 @@ from tkinter import scrolledtext, ttk
 import configparser
 import plyer
 from plyer import notification
-
 import sys
-import re
-sys.path.append(os.path.realpath('.'))
-from pprint import pprint
-import inquirer
 
 class TimeOut:
     def __init__(self):
@@ -26,18 +21,7 @@ class TimeOut:
         self.iconPath = os.path.realpath(os.path.join(self.iconLocation, 'clock.ico'))
 
     def run(self):
-        # pick language first, then run
-        questions = [
-            inquirer.List('lang',
-                        message="What type of alarm do you want?",
-                        choices=['normal', 'angry', 'owo', 'pirate'],
-                    ),
-            ]
-
-        self.language = inquirer.prompt(questions)
-
         i = 0
-        # actually start running runs
         while i < self.runtime:
             alert = setMessage(self, i)
             msgTitle = setTitle(self.language)
@@ -57,25 +41,31 @@ def setTitle(lang):
         return "OwO"
     elif lang =="normal":
         return "hello friend,"
+    elif lang =="eldritch":
+        return "greetings dreamer,"
     else:
         return "SUP NERD,"
 
 def setMessage(self, i):
         line = i % self.runtime
         if self.language == "pirate":
-            langFile = open('pirateTalk')
+            langFile = open(os.path.join(os.path.dirname(__file__), 'pirateTalk'))
             message = langFile.readlines()
             return message[line]
         elif self.language == "owo":
-            langFile = open('owoTalk')
+            langFile = open(os.path.join(os.path.dirname(__file__), 'owoTalk'))
             message = langFile.readlines()
             return message[line]
         elif self.language == "normal":
-            langFile = open('normalTalk')
+            langFile = open(os.path.join(os.path.dirname(__file__), 'normalTalk'))
             message = langFile.readlines()
-            return message[line]    
+            return message[line]
+        elif self.language == "eldritch":
+            langFile = open(os.path.join(os.path.dirname(__file__), 'eldritchTalk'))
+            message = langFile.readlines()
+            return message[line]
         else:
-            langFile = open('meanTalk')
+            langFile = open(os.path.join(os.path.dirname(__file__), 'pirateTalk'))
             message = langFile.readlines()
             return message[line]
 
